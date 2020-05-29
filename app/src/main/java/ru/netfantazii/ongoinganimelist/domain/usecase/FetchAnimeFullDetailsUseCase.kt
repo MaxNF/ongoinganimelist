@@ -1,0 +1,3 @@
+package ru.netfantazii.ongoinganimelist.domain.usecase
+
+class FetchAnimeFullDetailsUseCase
