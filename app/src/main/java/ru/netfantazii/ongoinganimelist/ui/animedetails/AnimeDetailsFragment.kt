@@ -1,4 +1,6 @@
 package ru.netfantazii.ongoinganimelist.ui.animedetails
 
-class AnimeDetailsFragment {
+import androidx.fragment.app.Fragment
+
+class AnimeDetailsFragment : Fragment() {
 }

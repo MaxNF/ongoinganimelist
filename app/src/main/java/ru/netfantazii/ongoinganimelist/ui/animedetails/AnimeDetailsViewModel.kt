@@ -1,4 +1,6 @@
 package ru.netfantazii.ongoinganimelist.ui.animedetails
 
-class AnimeDetailsViewModel {
+import androidx.lifecycle.ViewModel
+
+class AnimeDetailsViewModel : ViewModel(){
 }

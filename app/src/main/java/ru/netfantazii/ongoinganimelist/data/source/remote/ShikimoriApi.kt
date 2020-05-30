@@ -38,7 +38,11 @@ interface ShikimoriApi {
     }
 
     @GET("animes")
-    suspend fun getAnimeList(@Query("status") status: String): List<AnimeShortDetails>
+    suspend fun getAnimeList(
+        @Query("status") status: String,
+        @Query("page") page: Int,
+        @Query("limit") limit: Int
+    ): List<AnimeShortDetails>
 
     @GET("animes/{id}")
     suspend fun getAnime(@Path("id") animeId: Int): AnimeFullDetails

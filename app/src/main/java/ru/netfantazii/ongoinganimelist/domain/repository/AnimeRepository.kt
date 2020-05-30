@@ -5,6 +5,6 @@ import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 import ru.netfantazii.ongoinganimelist.data.repository.Result
 
 interface AnimeRepository {
-    suspend fun getOngoings(page: Int): Result<List<AnimeShortDetails>>
+    suspend fun getOngoings(page: Int, limit: Int): Result<List<AnimeShortDetails>>
     suspend fun getAnimeDetails(id: Int): Result<AnimeFullDetails>
 }

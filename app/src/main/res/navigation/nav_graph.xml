@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/animeListFragment">
+
+    <fragment
+        android:id="@+id/animeListFragment"
+        android:name="ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragment"
+        android:label="AnimeListFragment" >
+        <action
+            android:id="@+id/action_animeListFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animeDetailsFragment"
+        android:name="ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsFragment"
+        android:label="AnimeDetailsFragment" />
+</navigation>
