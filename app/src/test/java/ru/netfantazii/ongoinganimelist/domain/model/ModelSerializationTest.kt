@@ -5,13 +5,9 @@ import org.junit.Test
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import ru.netfantazii.ongoinganimelist.data.source.remote.AnimeDetailsAdapter
-import java.time.LocalDate
 
 
 class ModelSerializationTest {
-
-    private val correctAiredOnDate = LocalDate.of(2003, 4, 20)
-    private val correctReleasedOnDate = LocalDate.of(2008, 12, 9)
 
     private val converter = Moshi.Builder()
         .add(AnimeDetailsAdapter())
@@ -35,8 +31,8 @@ class ModelSerializationTest {
         assertThat(animeShortDetails.status).isEqualTo(Status.RELEASED)
         assertThat(animeShortDetails.episodes).isEqualTo(5)
         assertThat(animeShortDetails.episodesAired).isEqualTo(0)
-        assertThat(animeShortDetails.airedOn).isEqualTo(correctAiredOnDate)
-        assertThat(animeShortDetails.releasedOn).isEqualTo(correctReleasedOnDate)
+        assertThat(animeShortDetails.airedOn).isEqualTo(JsonTestStrings.correctAiredOnDate)
+        assertThat(animeShortDetails.releasedOn).isEqualTo(JsonTestStrings.correctReleasedOnDate)
     }
 
     @Test
@@ -56,8 +52,8 @@ class ModelSerializationTest {
         assertThat(animeFullDetails.status).isEqualTo(Status.RELEASED)
         assertThat(animeFullDetails.episodes).isEqualTo(5)
         assertThat(animeFullDetails.episodesAired).isEqualTo(0)
-        assertThat(animeFullDetails.airedOn).isEqualTo(correctAiredOnDate)
-        assertThat(animeFullDetails.releasedOn).isEqualTo(correctReleasedOnDate)
+        assertThat(animeFullDetails.airedOn).isEqualTo(JsonTestStrings.correctAiredOnDate)
+        assertThat(animeFullDetails.releasedOn).isEqualTo(JsonTestStrings.correctReleasedOnDate)
         assertThat(animeFullDetails.description).isEqualTo("История разворачивается вокруг крольчихи Докхи, встретившей и полюбившей кота Наби. Общество в этом мире не приемлет отношений между разными видами, и Наби решительно отвергает Докхи. Но любовь всегда найдёт свою дорогу, и видя, как сильны чувства девушки и что она настроена решительно, Наби в конце концов сдаётся и, несмотря на всеобщее осуждение, даёт Докхи шанс, найдя и в ней что-то привлекательное для себя.")
         assertThat(animeFullDetails.rating).isEqualTo(Rating.G)
         assertThat(animeFullDetails.genres.size).isEqualTo(2)

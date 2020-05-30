@@ -1,7 +1,11 @@
 package ru.netfantazii.ongoinganimelist.domain.model
 
+import java.time.LocalDate
+
 class JsonTestStrings {
     companion object {
+        val correctAiredOnDate: LocalDate = LocalDate.of(2003, 4, 20)
+        val correctReleasedOnDate: LocalDate = LocalDate.of(2008, 12, 9)
         const val jsonShortDetailsString = """
 {
     "id": 6505,
