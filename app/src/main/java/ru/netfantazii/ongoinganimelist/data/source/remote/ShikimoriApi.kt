@@ -20,7 +20,7 @@ interface ShikimoriApi {
         const val baseUrl = "https://shikimori.one/api/"
         fun create(): ShikimoriApi {
             val logging =
-                HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+                HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
             val httpClient = OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build()
