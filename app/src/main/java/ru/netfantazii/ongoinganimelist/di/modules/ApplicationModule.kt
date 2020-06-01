@@ -19,15 +19,12 @@ import ru.netfantazii.ongoinganimelist.ui.animelist.paging.AnimeShortDetailsDiff
 abstract class ApplicationModule {
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [ApplicationProvidesModule::class])
+    @ContributesAndroidInjector(modules = [AnimeListModule::class])
     abstract fun contributeAnimeListInjector(): AnimeListFragment
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [ApplicationProvidesModule::class])
+    @ContributesAndroidInjector
     abstract fun contributeAnimeDetailsInjector(): AnimeDetailsFragment
-
-    @Binds
-    abstract fun bindDiffCallback(animeShortDetailsDiffCallback: AnimeShortDetailsDiffCallback): DiffUtil.ItemCallback<AnimeShortDetails>
 
     @Binds
     @IntoMap

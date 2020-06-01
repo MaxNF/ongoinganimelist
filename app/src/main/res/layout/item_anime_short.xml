@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="Extensions"
+            type="ru.netfantazii.ongoinganimelist.extensions.ModelExtensionsKt" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="animeShortDetails"
+            type="ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/cardBackground"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            tools:ignore="UnusedAttribute">
+
+            <ImageView
+                android:id="@+id/anime_poster"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImage="@{animeShortDetails.poster.originalSizeUrl}" />
+
+            <TextView
+                android:id="@+id/anime_title_eng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="2dp"
+                android:text='@{animeShortDetails.englishName}'
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/animeTitleColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/anime_poster"
+                tools:text="Gunslinger Girl" />
+
+            <TextView
+                android:id="@+id/anime_title_rus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                android:text="@{animeShortDetails.russianName}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
+                android:textColor="@color/animeTitleColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="@{Extensions.isRussianNameAvailable(animeShortDetails) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/anime_title_eng"
+                tools:text="Школа убийц" />
+
+            <TextView
+                android:id="@+id/anime_episode_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:text='@{@string/episodes_label +": " + animeShortDetails.episodes}'
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textColor="@color/animeTitleColor"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintTop_toBottomOf="@+id/anime_title_rus"
+                tools:text="Серий: 12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

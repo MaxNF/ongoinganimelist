@@ -3,14 +3,13 @@ package ru.netfantazii.ongoinganimelist.domain.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.time.LocalDate
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 class AnimeFullDetails(
     id: Int,
     englishName: String?,
     russianName: String?,
-    posterUrl: PosterUrl?,
+    poster: Poster?,
     url: String?,
     kind: Kind?,
     score: Float?,
@@ -27,7 +26,7 @@ class AnimeFullDetails(
     id,
     englishName,
     russianName,
-    posterUrl,
+    poster,
     url,
     kind,
     score,

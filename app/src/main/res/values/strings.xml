@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OngoingAnimeList</string>
+    <string name="episodes_label">Серий</string>
 </resources>

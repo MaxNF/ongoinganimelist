@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import ru.netfantazii.ongoinganimelist.databinding.ShortDetailsViewHolderBinding
+import ru.netfantazii.ongoinganimelist.databinding.ItemAnimeShortBinding
 import ru.netfantazii.ongoinganimelist.di.FragmentScope
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 import javax.inject.Inject
 
-class AnimeShortDetailsViewHolder(private val binding: ShortDetailsViewHolderBinding) :
+class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(animeShortDetails: AnimeShortDetails) {
@@ -25,10 +25,8 @@ class AnimeListAdapter @Inject constructor(diffCallback: DiffUtil.ItemCallback<A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimeShortDetailsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ShortDetailsViewHolderBinding.inflate(layoutInflater, parent, false)
-        return AnimeShortDetailsViewHolder(
-            binding
-        )
+        val binding = ItemAnimeShortBinding.inflate(layoutInflater, parent, false)
+        return AnimeShortDetailsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AnimeShortDetailsViewHolder, position: Int) {

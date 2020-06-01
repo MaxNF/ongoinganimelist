@@ -1,5 +1,6 @@
 package ru.netfantazii.ongoinganimelist.ui.animelist.paging
 
+import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import androidx.paging.PositionalDataSource
 import kotlinx.coroutines.CoroutineScope
@@ -8,12 +9,12 @@ import ru.netfantazii.ongoinganimelist.data.repository.Result
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 import ru.netfantazii.ongoinganimelist.domain.usecase.FetchOngoingAnimesUseCase
 import javax.inject.Inject
+import kotlin.math.log
 
-class AnimeDataSource (
+class AnimeDataSource(
     private val scope: CoroutineScope,
     private val fetchOngoingAnimesUseCase: FetchOngoingAnimesUseCase
-) :
-    PageKeyedDataSource<Int, AnimeShortDetails>() {
+) : PageKeyedDataSource<Int, AnimeShortDetails>() {
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -22,6 +23,7 @@ class AnimeDataSource (
         scope.launch {
             val result = fetchOngoingAnimesUseCase(1, params.requestedLoadSize)
             if (result is Result.Success) {
+                Log.d("Binding", "loadInitial: LOADED ${result.value.size}")
                 callback.onResult(result.value, null, 2)
             } else {
                 handleError(result)
@@ -37,6 +39,7 @@ class AnimeDataSource (
             val result = fetchOngoingAnimesUseCase(params.key, params.requestedLoadSize)
             if (result is Result.Success) {
                 val nextKey = params.key + 1
+                Log.d("Binding", "loadAfter: LOADED ${result.value.size}")
                 callback.onResult(result.value, nextKey)
             } else {
                 handleError(result)

@@ -3,14 +3,13 @@ package ru.netfantazii.ongoinganimelist.domain.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.time.LocalDate
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 open class AnimeShortDetails(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "name") val englishName: String?,
     @field:Json(name = "russian") val russianName: String?,
-    @field:Json(name = "image") val posterUrl: PosterUrl?,
+    @field:Json(name = "image") val poster: Poster?,
     @field:Json(name = "url") val url: String?,
     @field:Json(name = "kind") val kind: Kind?,
     @field:Json(name = "score") val score: Float?,

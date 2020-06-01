@@ -21,7 +21,7 @@ class AnimeShortDetailsDiffCallback @Inject constructor(
                 oldItem.episodes != newItem.episodes ||
                 oldItem.episodesAired != newItem.episodesAired ||
                 oldItem.kind != newItem.kind ||
-                oldItem.posterUrl != newItem.posterUrl ||
+                oldItem.poster != newItem.poster ||
                 oldItem.releasedOn != newItem.releasedOn ||
                 oldItem.russianName != newItem.russianName ||
                 oldItem.score != newItem.score ||

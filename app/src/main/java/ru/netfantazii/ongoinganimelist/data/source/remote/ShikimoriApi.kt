@@ -2,11 +2,8 @@ package ru.netfantazii.ongoinganimelist.data.source.remote
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.Deferred
-import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -17,7 +14,8 @@ import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 
 interface ShikimoriApi {
     companion object {
-        const val baseUrl = "https://shikimori.one/api/"
+        const val baseUrl = "https://shikimori.one"
+        private const val apiBaseUrl = "https://shikimori.one/api/"
         fun create(): ShikimoriApi {
             val logging =
                 HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
@@ -29,7 +27,7 @@ interface ShikimoriApi {
                 .add(KotlinJsonAdapterFactory())
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(apiBaseUrl)
                 .client(httpClient)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .build()
