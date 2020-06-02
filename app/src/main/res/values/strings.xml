@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">OngoingAnimeList</string>
     <string name="episodes_label">Серий</string>
+    <string name="kind_movie">Фильм</string>
+    <string name="kind_music">Музыкальный</string>
+    <string name="kind_ona">ONA</string>
+    <string name="kind_ova">OVA</string>
+    <string name="kind_special">Спэшл</string>
+    <string name="kind_tv">ТВ</string>
+    <string name="kind_unkown">Неизвестный тип</string>
+    <string name="episodes_finished">(%1$d эп.)</string>
+    <string name="episodes_ongoing">(%1$d/%2$d эп.)</string>
+    <string name="http_error">Ошибка во время получения данных от сервера. Код: %1$d</string>
+    <string name="network_error">Ошибка сети. Проверьте соединение.</string>
 </resources>

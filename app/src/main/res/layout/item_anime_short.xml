@@ -6,13 +6,13 @@
     <data>
 
         <import
-            alias="Extensions"
+            alias="ModelExt"
             type="ru.netfantazii.ongoinganimelist.extensions.ModelExtensionsKt" />
 
         <import type="android.view.View" />
 
         <variable
-            name="animeShortDetails"
+            name="anime"
             type="ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails" />
     </data>
 
@@ -21,9 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@color/cardBackground"
+        android:background="@color/cardBackgroundColor"
         android:foreground="?attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/cardBackground"
+        app:cardBackgroundColor="@color/cardBackgroundColor"
         app:cardCornerRadius="8dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,19 +44,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:loadImage="@{animeShortDetails.poster.originalSizeUrl}" />
+                app:loadImage="@{anime.poster.originalSizeUrl}" />
 
             <TextView
                 android:id="@+id/anime_title_eng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="4dp"
                 android:paddingStart="8dp"
+                android:paddingTop="4dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="2dp"
-                android:text='@{animeShortDetails.englishName}'
+                android:text='@{anime.englishName}'
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@color/animeTitleColor"
+                android:textColor="@color/titleColor"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,26 +70,26 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="4dp"
-                android:text="@{animeShortDetails.russianName}"
+                android:text="@{anime.russianName}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
-                android:textColor="@color/animeTitleColor"
+                android:textColor="@color/titleColor"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:visibility="@{Extensions.isRussianNameAvailable(animeShortDetails) ? View.VISIBLE : View.GONE}"
+                android:visibility="@{ModelExt.isRussianNameAvailable(anime) ? View.VISIBLE : View.GONE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/anime_title_eng"
                 tools:text="Школа убийц" />
 
             <TextView
-                android:id="@+id/anime_episode_count"
+                android:id="@+id/anime_kind"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
-                android:text='@{@string/episodes_label +": " + animeShortDetails.episodes}'
+                android:text='@{ModelExt.getFormattedKind(anime, context)}'
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:textColor="@color/animeTitleColor"
+                android:textColor="@color/titleColor"
                 android:textSize="14sp"
                 android:textStyle="italic"
                 app:layout_constraintTop_toBottomOf="@+id/anime_title_rus"

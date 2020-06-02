@@ -14,5 +14,9 @@
     <fragment
         android:id="@+id/animeDetailsFragment"
         android:name="ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsFragment"
-        android:label="AnimeDetailsFragment" />
+        android:label="AnimeDetailsFragment" >
+        <argument
+            android:name="animeId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

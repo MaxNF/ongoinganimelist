@@ -1,21 +1,42 @@
 package ru.netfantazii.ongoinganimelist.ui.animelist.paging
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.netfantazii.ongoinganimelist.databinding.ItemAnimeShortBinding
 import ru.netfantazii.ongoinganimelist.di.FragmentScope
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
+import ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragment
+import ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragmentDirections
 import javax.inject.Inject
 
 class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+    RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    init {
+        binding.root.setOnClickListener(this)
+    }
 
     fun bind(animeShortDetails: AnimeShortDetails) {
-        binding.animeShortDetails = animeShortDetails
+        binding.anime = animeShortDetails
         binding.executePendingBindings()
+    }
+
+    override fun onClick(v: View) {
+        val fragment = v.findFragment<AnimeListFragment>()
+        val anime = binding.anime
+        anime?.let {
+            val action =
+                AnimeListFragmentDirections.actionAnimeListFragmentToAnimeDetailsFragment(it.id)
+            fragment.findNavController().navigate(action)
+        }
     }
 }
 

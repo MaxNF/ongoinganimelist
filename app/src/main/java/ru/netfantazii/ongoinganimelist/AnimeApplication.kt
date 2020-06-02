@@ -13,7 +13,7 @@ class AnimeApplication : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.create()
+        DaggerAppComponent.factory().create(applicationContext)
             .inject(this)
     }
 

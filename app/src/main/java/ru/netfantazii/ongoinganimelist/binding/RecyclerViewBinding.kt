@@ -1,10 +1,7 @@
 package ru.netfantazii.ongoinganimelist.binding
 
-import android.content.Context
-import android.util.Log
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 import ru.netfantazii.ongoinganimelist.ui.animelist.paging.AnimeListAdapter
