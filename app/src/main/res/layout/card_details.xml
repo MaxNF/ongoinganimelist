@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import
+            alias="ModelExt"
+            type="ru.netfantazii.ongoinganimelist.extensions.ModelExtensionsKt" />
+
+        <variable
+            name="viewModel"
+            type="ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/anime_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/cardBackgroundColor"
+        android:padding="12dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/anime_year_label"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/anime_year_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Год:" />
+
+            <TextView
+                android:id="@+id/anime_year_value"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{String.valueOf(viewModel.animeLiveData.airedOn.year)}"
+                app:layout_constraintStart_toEndOf="@id/anime_year_label"
+                app:layout_constraintTop_toTopOf="@id/anime_year_label"
+                tools:text="2018" />
+
+
+            <TextView
+                android:id="@+id/anime_kind_label"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/anime_kind_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/anime_year_label"
+                tools:text="Тип:" />
+
+            <TextView
+                android:id="@+id/anime_kind_value"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text='@{viewModel.animeLiveData != null ? ModelExt.getFormattedKind(viewModel.animeLiveData, context) : ""}'
+                app:layout_constraintStart_toEndOf="@id/anime_kind_label"
+                app:layout_constraintTop_toTopOf="@id/anime_kind_label"
+                tools:text="ТВ" />
+
+            <TextView
+                android:id="@+id/anime_genre_label"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/anime_genre_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/anime_kind_label"
+                tools:text="Жанры:" />
+
+            <TextView
+                android:id="@+id/anime_genre_value"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text='@{viewModel.animeLiveData != null ? ModelExt.getFormattedGenres(viewModel.animeLiveData, context) : ""}'
+                app:layout_constraintStart_toEndOf="@id/anime_genre_label"
+                app:layout_constraintTop_toTopOf="@id/anime_genre_label"
+                tools:text="романтика, драма" />
+
+            <TextView
+                android:id="@+id/anime_rating_label"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/anime_rating_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/anime_genre_label"
+                tools:text="Рейтинг:" />
+
+            <TextView
+                android:id="@+id/anime_rating_value"
+                style="@style/CardDetailsTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{viewModel.animeLiveData.score.toString()}"
+                app:layout_constraintStart_toEndOf="@id/anime_rating_label"
+                app:layout_constraintTop_toTopOf="@id/anime_rating_label"
+                tools:text="8.7" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

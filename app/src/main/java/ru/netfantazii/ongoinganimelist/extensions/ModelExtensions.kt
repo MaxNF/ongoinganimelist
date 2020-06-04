@@ -2,10 +2,17 @@ package ru.netfantazii.ongoinganimelist.extensions
 
 import android.content.Context
 import ru.netfantazii.ongoinganimelist.R
+import ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData
+import ru.netfantazii.ongoinganimelist.domain.model.AnimeFullDetails
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 import ru.netfantazii.ongoinganimelist.domain.model.Kind
 
-fun AnimeShortDetails.isRussianNameAvailable(): Boolean = !this.russianName.isNullOrBlank()
+fun AnimeShortDetails.isRussianNameAvailable(): Boolean =
+    doesRussianNameExist(this.russianName)
+
+fun AnimeCachedData.isRussianNameAvailable(): Boolean = doesRussianNameExist(this.russianName)
+
+private fun doesRussianNameExist(russianName: String?) = !russianName.isNullOrBlank()
 
 fun AnimeShortDetails.getFormattedKind(context: Context): String {
     val kind = if (this.kind != null) {
@@ -39,3 +46,22 @@ private fun getEpisodeCountIfNotZero(
         ""
     }
 }
+
+fun AnimeFullDetails.getFormattedDescription(context: Context): String {
+    val description = this.description
+    return if (description.isNullOrBlank()) {
+        context.getString(R.string.no_description)
+    } else {
+        this.description!!
+    }
+}
+
+fun AnimeFullDetails.getFormattedGenres(context: Context): String {
+    return if (this.genres != null) {
+        this.genres.joinToString()
+    } else {
+        context.getString(R.string.no_information)
+    }
+}
+
+

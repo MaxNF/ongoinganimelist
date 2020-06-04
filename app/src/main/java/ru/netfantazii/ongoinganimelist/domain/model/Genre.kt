@@ -7,5 +7,9 @@ import com.squareup.moshi.JsonClass
 data class Genre(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "name") val englishName: String,
-    @field:Json(name = "russian") val russianName: String) {
+    @field:Json(name = "russian") val russianName: String
+) {
+    override fun toString(): String {
+        return russianName
+    }
 }

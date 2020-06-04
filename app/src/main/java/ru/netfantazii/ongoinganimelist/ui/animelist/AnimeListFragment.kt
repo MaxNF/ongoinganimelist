@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import ru.netfantazii.ongoinganimelist.databinding.FragmentAnimeListBinding
 import ru.netfantazii.ongoinganimelist.di.ViewModelFactory
+import ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData
 import ru.netfantazii.ongoinganimelist.extensions.getViewModel
 import ru.netfantazii.ongoinganimelist.ui.animelist.paging.AnimeListAdapter
 import ru.netfantazii.ongoinganimelist.ui.base.BaseFragment
@@ -31,9 +33,12 @@ class AnimeListFragment : BaseFragment() {
         }.root
     }
 
-    fun navigateToDetails(animeId: Int) {
+    fun navigateToDetails(viewWithSharedElement: View, animeCachedData: AnimeCachedData) {
+        val extras = FragmentNavigatorExtras(viewWithSharedElement to "shared_anime_poster")
         val action =
-            AnimeListFragmentDirections.actionAnimeListFragmentToAnimeDetailsFragment(animeId)
-        this.findNavController().navigate(action)
+            AnimeListFragmentDirections.actionAnimeListFragmentToAnimeDetailsFragment(
+                animeCachedData
+            )
+        findNavController().navigate(action, extras)
     }
 }

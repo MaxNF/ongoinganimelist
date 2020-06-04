@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.netfantazii.ongoinganimelist.databinding.ItemAnimeShortBinding
 import ru.netfantazii.ongoinganimelist.di.FragmentScope
+import ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 import ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragment
 import ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragmentDirections
@@ -31,12 +32,12 @@ class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
 
     override fun onClick(v: View) {
         val fragment = v.findFragment<AnimeListFragment>()
-        val anime = binding.anime
-        anime?.let {
-            val action =
-                AnimeListFragmentDirections.actionAnimeListFragmentToAnimeDetailsFragment(it.id)
-            fragment.findNavController().navigate(action)
-        }
+        val id = binding.anime!!.id
+        val englishName = binding.anime!!.englishName
+        val russianName = binding.anime!!.russianName
+        val posterUrl = binding.anime!!.poster?.originalSizeUrl
+        val sharedView = binding.animePoster
+        fragment.navigateToDetails(sharedView, AnimeCachedData(id, englishName, russianName, posterUrl))
     }
 }
 

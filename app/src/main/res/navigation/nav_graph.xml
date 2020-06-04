@@ -16,7 +16,7 @@
         android:name="ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsFragment"
         android:label="AnimeDetailsFragment" >
         <argument
-            android:name="animeId"
-            app:argType="integer" />
+            android:name="animeCachedData"
+            app:argType="ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData" />
     </fragment>
 </navigation>
