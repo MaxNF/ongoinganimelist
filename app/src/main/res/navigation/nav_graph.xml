@@ -18,5 +18,8 @@
         <argument
             android:name="animeCachedData"
             app:argType="ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData" />
+        <argument
+            android:name="transitionName"
+            app:argType="string" />
     </fragment>
 </navigation>

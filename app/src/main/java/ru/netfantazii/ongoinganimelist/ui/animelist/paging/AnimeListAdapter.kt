@@ -27,6 +27,7 @@ class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
 
     fun bind(animeShortDetails: AnimeShortDetails) {
         binding.anime = animeShortDetails
+        binding.card.transitionName = animeShortDetails.id.toString()
         binding.executePendingBindings()
     }
 
@@ -36,7 +37,7 @@ class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
         val englishName = binding.anime!!.englishName
         val russianName = binding.anime!!.russianName
         val posterUrl = binding.anime!!.poster?.originalSizeUrl
-        val sharedView = binding.animePoster
+        val sharedView = binding.card
         fragment.navigateToDetails(sharedView, AnimeCachedData(id, englishName, russianName, posterUrl))
     }
 }

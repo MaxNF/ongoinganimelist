@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.transition.Hold
 import dagger.android.support.AndroidSupportInjection
+import ru.netfantazii.ongoinganimelist.Constants
 import ru.netfantazii.ongoinganimelist.databinding.FragmentAnimeListBinding
 import ru.netfantazii.ongoinganimelist.di.ViewModelFactory
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData
@@ -20,6 +22,11 @@ class AnimeListFragment : BaseFragment() {
 
     @Inject
     lateinit var adapter: AnimeListAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = Hold().apply { duration = Constants.TRANSITION_DURATION_MS}
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,10 +41,11 @@ class AnimeListFragment : BaseFragment() {
     }
 
     fun navigateToDetails(viewWithSharedElement: View, animeCachedData: AnimeCachedData) {
-        val extras = FragmentNavigatorExtras(viewWithSharedElement to "shared_anime_poster")
+        val extras =
+            FragmentNavigatorExtras(viewWithSharedElement to viewWithSharedElement.transitionName)
         val action =
             AnimeListFragmentDirections.actionAnimeListFragmentToAnimeDetailsFragment(
-                animeCachedData
+                animeCachedData, viewWithSharedElement.transitionName
             )
         findNavController().navigate(action, extras)
     }
