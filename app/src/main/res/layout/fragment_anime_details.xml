@@ -24,10 +24,10 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/details_root"
+        android:id="@+id/details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
+        android:background="@color/cardBackgroundColor"
         app:toast="@{viewModel.toastLiveData}">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -87,7 +87,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
+            android:background="@color/cardBackgroundColor"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout

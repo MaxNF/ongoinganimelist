@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,7 @@ import ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData
 import ru.netfantazii.ongoinganimelist.domain.model.AnimeShortDetails
 import ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragment
 import ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragmentDirections
+import ru.netfantazii.ongoinganimelist.ui.base.BaseFragment
 import javax.inject.Inject
 
 class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
@@ -27,7 +29,7 @@ class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
 
     fun bind(animeShortDetails: AnimeShortDetails) {
         binding.anime = animeShortDetails
-        binding.card.transitionName = animeShortDetails.id.toString()
+        binding.itemContainer.transitionName = animeShortDetails.id.toString()
         binding.executePendingBindings()
     }
 
@@ -37,8 +39,11 @@ class AnimeShortDetailsViewHolder(private val binding: ItemAnimeShortBinding) :
         val englishName = binding.anime!!.englishName
         val russianName = binding.anime!!.russianName
         val posterUrl = binding.anime!!.poster?.originalSizeUrl
-        val sharedView = binding.card
-        fragment.navigateToDetails(sharedView, AnimeCachedData(id, englishName, russianName, posterUrl))
+        val sharedView = binding.itemContainer
+        fragment.navigateToDetails(
+            sharedView,
+            AnimeCachedData(id, englishName, russianName, posterUrl)
+        )
     }
 }
 

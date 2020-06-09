@@ -16,6 +16,12 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/anime_recycler_view"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:transitionGroup="false"
+        android:clipChildren="false"
+        android:background="@color/backgroundColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:adapter="@{adapter}"

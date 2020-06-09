@@ -17,10 +17,11 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:transitionGroup="true"
         android:background="@color/cardBackgroundColor"
         android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/cardBackgroundColor"
