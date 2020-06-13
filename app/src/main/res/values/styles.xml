@@ -13,4 +13,17 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">italic</item>
     </style>
+
+    <style name="CollapsedExpandedTitleText" parent="AppTheme">
+        <item name="android:textColor">@android:color/transparent</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="ToolbarDefaultStyle" parent="AppTheme">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="ToolbarCollapsingStyle" parent="AppTheme">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

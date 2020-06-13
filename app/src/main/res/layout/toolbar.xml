@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+    <variable
+        name="title"
+        type="String" />
+
+    <variable
+        name="backgroundColor"
+        type="Integer" />
+</data>
+
+    <com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:connectWithNavigation="@{true}"
+        app:customBackground="@{backgroundColor == null ? @android:color/transparent : backgroundColor}"
+        app:title="@{title == null ? @string/app_name : title}">
+
+    </com.google.android.material.appbar.MaterialToolbar>
+</layout>

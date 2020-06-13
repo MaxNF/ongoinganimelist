@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="viewModel"
             type="ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListViewModel" />
@@ -9,27 +11,42 @@
             name="adapter"
             type="ru.netfantazii.ongoinganimelist.ui.animelist.paging.AnimeListAdapter" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/anime_recycler_view"
-        android:padding="8dp"
-        android:clipToPadding="false"
-        android:transitionGroup="false"
-        android:clipChildren="false"
-        android:background="@color/backgroundColor"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:adapter="@{adapter}"
-        app:adapterPagedList="@{viewModel.pagedAnimeList}"
-        app:spanCount="2"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        tools:listitem="@layout/item_anime_short"
-        />
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/toolbar"
+            style="@style/ToolbarDefaultStyle"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:backgroundColor="@{@color/colorPrimary}"
+            bind:title="@{null}" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/anime_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/backgroundColor"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            android:transitionGroup="false"
+            app:adapter="@{adapter}"
+            app:adapterPagedList="@{viewModel.pagedAnimeList}"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:spanCount="2"
+            tools:listitem="@layout/item_anime_short" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

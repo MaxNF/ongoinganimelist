@@ -11,6 +11,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.ArcMotion
 import androidx.transition.Fade
 import com.google.android.material.transition.MaterialContainerTransform
+import kotlinx.android.synthetic.main.card_details.*
+import kotlinx.android.synthetic.main.fragment_anime_details.*
 import ru.netfantazii.ongoinganimelist.Constants
 import ru.netfantazii.ongoinganimelist.R
 import ru.netfantazii.ongoinganimelist.databinding.FragmentAnimeDetailsBinding
@@ -42,6 +44,8 @@ class AnimeDetailsFragment : BaseFragment() {
             lifecycleOwner = this@AnimeDetailsFragment
             detailsContainer.transitionName = args.transitionName
             animeCachedData = args.animeCachedData
+            fab = detailsFab
+            details = cardDetails.animeDetails
         }.root
     }
 }

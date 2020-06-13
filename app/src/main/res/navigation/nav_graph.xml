@@ -5,8 +5,7 @@
 
     <fragment
         android:id="@+id/animeListFragment"
-        android:name="ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragment"
-        android:label="AnimeListFragment" >
+        android:name="ru.netfantazii.ongoinganimelist.ui.animelist.AnimeListFragment">
         <action
             android:id="@+id/action_animeListFragment_to_animeDetailsFragment"
             app:destination="@id/animeDetailsFragment"
@@ -17,8 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/animeDetailsFragment"
-        android:name="ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsFragment"
-        android:label="AnimeDetailsFragment" >
+        android:name="ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsFragment">
         <argument
             android:name="animeCachedData"
             app:argType="ru.netfantazii.ongoinganimelist.domain.model.AnimeCachedData" />

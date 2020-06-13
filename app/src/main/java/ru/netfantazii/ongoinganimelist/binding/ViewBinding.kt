@@ -1,26 +1,19 @@
 package ru.netfantazii.ongoinganimelist.binding
 
-import android.graphics.drawable.Drawable
-import android.util.Log
+import android.graphics.Color
+import android.transition.PathMotion
+import android.transition.TransitionManager
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.BindingAdapter
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
-import androidx.lifecycle.LiveData
+import androidx.transition.ArcMotion
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsFragment
-import java.lang.IllegalStateException
+import com.google.android.material.transition.platform.MaterialArcMotion
+import com.google.android.material.transition.platform.MaterialContainerTransform
 
 @BindingAdapter("app:loadImage")
 fun bindLoadImage(view: ImageView, url: String?) {
-//    return
-
     if (url == null) {
         //TODO("add placeholder image")
     } else {
@@ -29,10 +22,35 @@ fun bindLoadImage(view: ImageView, url: String?) {
     }
 }
 
-@BindingAdapter("app:toast")
-fun bindToast(view: View, message: LiveData<String>) {
-    if (message.value != null) {
-        val context = view.context
-        Toast.makeText(context, message.value, Toast.LENGTH_LONG).show()
+@BindingAdapter("app:customBackground")
+fun bindBackground(view: View, color: Int) {
+    view.setBackgroundColor(color)
+}
+
+@BindingAdapter("app:transformFromView", "app:transformToView")
+fun bindViewTransformation(container: ViewGroup, firstView: View, secondView: View) {
+    firstView.setOnClickListener {
+        TransitionManager.beginDelayedTransition(
+            container,
+            getTransformation(firstView, secondView)
+        )
+        firstView.visibility = View.GONE
+        secondView.visibility = View.VISIBLE
     }
+    secondView.setOnClickListener {
+        TransitionManager.beginDelayedTransition(
+            container,
+            getTransformation(secondView, firstView)
+        )
+        secondView.visibility = View.GONE
+        firstView.visibility = View.VISIBLE
+    }
+}
+
+private fun getTransformation(fromView: View, toView: View) = MaterialContainerTransform().apply {
+    startView = fromView
+    endView = toView
+    duration = 650
+    pathMotion = MaterialArcMotion()
+    scrimColor = Color.TRANSPARENT
 }

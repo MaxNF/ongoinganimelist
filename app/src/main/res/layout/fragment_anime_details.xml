@@ -21,6 +21,14 @@
         <variable
             name="viewModel"
             type="ru.netfantazii.ongoinganimelist.ui.animedetails.AnimeDetailsViewModel" />
+
+        <variable
+            name="fab"
+            type="com.google.android.material.floatingactionbutton.FloatingActionButton" />
+
+        <variable
+            name="details"
+            type="com.google.android.material.card.MaterialCardView" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -28,7 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cardBackgroundColor"
-        app:toast="@{viewModel.toastLiveData}">
+        app:toast="@{viewModel.toastLiveData}"
+        app:transformFromView="@{fab}"
+        app:transformToView="@{details}">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -40,23 +50,27 @@
                 android:layout_height="match_parent"
                 android:background="@color/backgroundColor"
                 app:contentScrim="@color/colorPrimary"
-                app:expandedTitleGravity="top"
-                app:expandedTitleTextAppearance="@android:color/transparent">
+                app:expandedTitleGravity="top|left"
+                app:expandedTitleTextAppearance="@style/CollapsedExpandedTitleText"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/details_fab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="16dp"
                         android:elevation="8dp"
+                        app:backgroundTint="@color/cardBackgroundColor"
                         app:fabSize="mini"
                         app:layout_constraintBottom_toBottomOf="@id/anime_poster"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/ic_more_info" />
+                        app:srcCompat="@drawable/ic_more_info"
+                        app:tint="@android:color/white"/>
 
                     <ImageView
                         android:id="@+id/anime_poster"
@@ -70,6 +84,7 @@
                         app:loadImage="@{animeCachedData.posterUrl}" />
 
                     <include
+                        android:id="@+id/card_details"
                         layout="@layout/card_details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -81,6 +96,17 @@
                         bind:viewModel="@{viewModel}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    android:id="@+id/toolbar"
+                    style="@style/ToolbarCollapsingStyle"
+                    layout="@layout/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    bind:title="@{animeCachedData.englishName}"
+                    bind:backgroundColor="@{null}"/>
+
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -96,43 +122,49 @@
 
                 <TextView
                     android:id="@+id/anime_title_eng"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@{animeCachedData.englishName}"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                     android:textColor="@color/titleColor"
                     android:textSize="24sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Gunslinger Girl" />
 
                 <TextView
                     android:id="@+id/anime_title_rus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@{animeCachedData.russianName}"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
                     android:textColor="@color/titleColor"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:visibility="@{ModelExt.isRussianNameAvailable(animeCachedData) ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/anime_title_eng"
                     tools:text="Школа убийц" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@{viewModel.animeLiveData != null ? ModelExt.getFormattedDescription(viewModel.animeLiveData, context) : @string/no_description}"
                     android:textColor="@color/textColor"
                     android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/anime_title_rus"
                     tools:text="Description" />
