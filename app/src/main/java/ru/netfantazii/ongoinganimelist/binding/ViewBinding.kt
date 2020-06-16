@@ -34,7 +34,7 @@ fun bindViewTransformation(container: ViewGroup, firstView: View, secondView: Vi
             container,
             getTransformation(firstView, secondView)
         )
-        firstView.visibility = View.GONE
+        firstView.visibility = View.INVISIBLE
         secondView.visibility = View.VISIBLE
     }
     secondView.setOnClickListener {
@@ -42,7 +42,7 @@ fun bindViewTransformation(container: ViewGroup, firstView: View, secondView: Vi
             container,
             getTransformation(secondView, firstView)
         )
-        secondView.visibility = View.GONE
+        secondView.visibility = View.INVISIBLE
         firstView.visibility = View.VISIBLE
     }
 }
