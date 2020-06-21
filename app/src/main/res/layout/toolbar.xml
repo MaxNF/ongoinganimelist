@@ -15,7 +15,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:connectWithNavigation="@{true}"
+        app:setUpNavigationIcon="@{@drawable/ic_arrow_back}"
+        app:setUpHomeIcon="@{null}"
         app:customBackground="@{backgroundColor == null ? @android:color/transparent : backgroundColor}"
         app:title="@{title == null ? @string/app_name : title}">
 

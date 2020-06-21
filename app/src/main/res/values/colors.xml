@@ -3,6 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#970444</color>
+    <color name="colorAccent20Opacity">#33970444</color>
 
     <color name="backgroundColor">#111620</color>
     <color name="cardBackgroundColor">#24364C</color>

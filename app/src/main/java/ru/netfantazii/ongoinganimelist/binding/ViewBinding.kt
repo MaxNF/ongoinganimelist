@@ -11,6 +11,7 @@ import androidx.transition.ArcMotion
 import com.bumptech.glide.Glide
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
+import ru.netfantazii.ongoinganimelist.motion.LinearPathMotion
 
 @BindingAdapter("app:loadImage")
 fun bindLoadImage(view: ImageView, url: String?) {
@@ -51,6 +52,6 @@ private fun getTransformation(fromView: View, toView: View) = MaterialContainerT
     startView = fromView
     endView = toView
     duration = 650
-    pathMotion = MaterialArcMotion()
+    pathMotion = LinearPathMotion()
     scrimColor = Color.TRANSPARENT
 }
